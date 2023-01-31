@@ -1,0 +1,9 @@
+services:
+  evrinoma.nomenclature.test.functional.action.item:
+    class: Evrinoma\NomenclatureBundle\Tests\Functional\Action\BaseItem
+    public: true
+    arguments:
+
+  Evrinoma\NomenclatureBundle\Tests\Functional\Action\BaseItem:
+    alias: evrinoma.nomenclature.test.functional.action.item
+    public: true

@@ -1,0 +1,17 @@
+services:
+  evrinoma.nomenclature.constraint.property.nomenclature.body:
+    class: Evrinoma\NomenclatureBundle\Constraint\Property\Nomenclature\Body
+
+  evrinoma.nomenclature.constraint.property.nomenclature.title:
+    class: Evrinoma\NomenclatureBundle\Constraint\Property\Nomenclature\Title
+
+  evrinoma.nomenclature.constraint.property.nomenclature.preview:
+    class: Evrinoma\NomenclatureBundle\Constraint\Property\Nomenclature\Preview
+
+  evrinoma.nomenclature.constraint.property.nomenclature.active:
+    class: Evrinoma\NomenclatureBundle\Constraint\Property\Nomenclature\Active
+
+  evrinoma.nomenclature.constraint.property.nomenclature.item:
+    class: Evrinoma\NomenclatureBundle\Constraint\Property\Nomenclature\Item
+
+

@@ -1,0 +1,3 @@
+imports:
+  - { resource: tests/nomenclature.yml }
+  - { resource: tests/item.yml }

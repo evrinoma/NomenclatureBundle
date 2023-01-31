@@ -1,0 +1,5 @@
+services:
+  evrinoma.nomenclature.object_manager:
+    class:  Doctrine\Persistence\ObjectManager
+    public: false
+    arguments: ['%evrinoma.nomenclature.model_manager_name%']

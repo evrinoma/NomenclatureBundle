@@ -1,0 +1,6 @@
+jms_serializer:
+  metadata:
+    directories:
+      NomenclatureBundle:
+        namespace_prefix: "Evrinoma\\NomenclatureBundle"
+        path: '%kernel.root_dir%/Resources/config/serializer/NomenclatureBundle'

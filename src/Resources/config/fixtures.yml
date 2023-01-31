@@ -1,0 +1,10 @@
+services:
+  evrinoma.nomenclature.fixtures.nomenclature:
+    class: Evrinoma\NomenclatureBundle\Fixtures\NomenclatureFixtures
+    tags:
+      - { name: doctrine.fixture.orm }
+
+  evrinoma.nomenclature.fixtures.item:
+    class: Evrinoma\NomenclatureBundle\Fixtures\ItemFixtures
+    tags:
+      - { name: doctrine.fixture.orm }

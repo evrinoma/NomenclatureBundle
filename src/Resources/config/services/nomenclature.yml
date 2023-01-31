@@ -1,0 +1,101 @@
+services:
+  Evrinoma\NomenclatureBundle\Controller\NomenclatureApiController:
+    alias: evrinoma.nomenclature.nomenclature.api.controller
+    public: true
+
+  evrinoma.nomenclature.nomenclature.api.controller:
+    class: Evrinoma\NomenclatureBundle\Controller\NomenclatureApiController
+    arguments:
+      - '@jms_serializer'
+      - '@request_stack'
+      - '@evrinoma.dto.factory'
+      - '@evrinoma.nomenclature.nomenclature.facade'
+    autowire: true
+
+  evrinoma.nomenclature.nomenclature.facade:
+    class: Evrinoma\NomenclatureBundle\Facade\Nomenclature\Facade
+    arguments:
+      - '@evrinoma.nomenclature.nomenclature.command.manager'
+      - '@evrinoma.nomenclature.nomenclature.query.manager'
+      - '@evrinoma.nomenclature.adaptor'
+    autowire: true
+
+  Evrinoma\NomenclatureBundle\Facade\Nomenclature\FacadeInterface:
+    alias: evrinoma.nomenclature.nomenclature.facade
+
+  evrinoma.nomenclature.nomenclature.factory:
+    class: Evrinoma\NomenclatureBundle\Factory\Nomenclature\Factory
+    public: true
+    arguments:
+
+  evrinoma.nomenclature.nomenclature.orm.repository:
+    class: Evrinoma\NomenclatureBundle\Repository\Orm\Nomenclature\NomenclatureRepository
+    public: true
+    arguments:
+
+  evrinoma.nomenclature.nomenclature.command.manager:
+    class: Evrinoma\NomenclatureBundle\Manager\Nomenclature\CommandManager
+    arguments:
+      - '@evrinoma.nomenclature.nomenclature.validator'
+      - '@evrinoma.nomenclature.nomenclature.repository'
+      - '@evrinoma.nomenclature.nomenclature.factory'
+      - '@evrinoma.nomenclature.nomenclature.command.mediator'
+
+  Evrinoma\NomenclatureBundle\Manager\Nomenclature\CommandManagerInterface:
+    alias: evrinoma.nomenclature.nomenclature.command.manager
+
+  evrinoma.nomenclature.nomenclature.query.manager:
+    class: Evrinoma\NomenclatureBundle\Manager\Nomenclature\QueryManager
+    arguments:
+      - '@evrinoma.nomenclature.nomenclature.repository'
+
+  Evrinoma\NomenclatureBundle\Manager\Nomenclature\QueryManagerInterface:
+    alias: evrinoma.nomenclature.nomenclature.query.manager
+    
+  evrinoma.nomenclature.nomenclature.validator:
+    class: Evrinoma\NomenclatureBundle\Validator\NomenclatureValidator
+    public: true
+    arguments:
+
+  Evrinoma\NomenclatureBundle\Validator\NomenclatureValidator:
+    alias: evrinoma.nomenclature.nomenclature.validator
+
+  evrinoma.nomenclature.nomenclature.query.orm.mediator:
+    class: Evrinoma\NomenclatureBundle\Mediator\Nomenclature\Orm\QueryMediator
+    public: true
+    arguments:
+
+  Evrinoma\NomenclatureBundle\Mediator\Nomenclature\Orm\QueryMediator:
+    alias: evrinoma.nomenclature.nomenclature.query.orm.mediator
+
+  evrinoma.nomenclature.nomenclature.command.mediator:
+    class: Evrinoma\NomenclatureBundle\Mediator\Nomenclature\CommandMediator
+    public: true
+
+  Evrinoma\NomenclatureBundle\Mediator\Nomenclature\CommandMediator:
+    alias: evrinoma.nomenclature.nomenclature.command.mediator
+
+  Evrinoma\NomenclatureBundle\Mediator\Nomenclature\CommandMediatorInterface:
+    alias: evrinoma.nomenclature.nomenclature.command.mediator
+
+  evrinoma.nomenclature.nomenclature.pre.validator:
+    class: Evrinoma\NomenclatureBundle\PreValidator\Nomenclature\DtoPreValidator
+    public: true
+    arguments:
+
+  Evrinoma\NomenclatureBundle\PreValidator\Nomenclature\DtoPreValidator:
+    alias: evrinoma.nomenclature.nomenclature.pre.validator
+
+  Evrinoma\NomenclatureBundle\PreValidator\Nomenclature\DtoPreValidatorInterface:
+    alias: evrinoma.nomenclature.nomenclature.pre.validator
+
+  evrinoma.nomenclature.nomenclature.system.file_system:
+    class: Evrinoma\NomenclatureBundle\System\FileSystem
+    public: true
+    arguments:
+
+  Evrinoma\NomenclatureBundle\System\FileSystem:
+    alias: evrinoma.nomenclature.nomenclature.system.file_system
+
+  Evrinoma\NomenclatureBundle\System\FileSystemInterface:
+    alias: evrinoma.nomenclature.nomenclature.system.file_system

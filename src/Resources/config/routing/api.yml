@@ -1,0 +1,9 @@
+nomenclature_api:
+  resource: "@EvrinomaNomenclatureBundle/Controller/NomenclatureApiController.php"
+  type: annotation
+
+nomenclature_item_api:
+  resource: "@EvrinomaNomenclatureBundle/Controller/ItemApiController.php"
+  type: annotation
+
+

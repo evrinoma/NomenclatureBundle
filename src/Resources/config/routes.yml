@@ -1,0 +1,3 @@
+nomenclatureapi:
+  resource: "@EvrinomaNomenclatureBundle/Resources/config/routing/api.yml"
+  prefix: evrinoma

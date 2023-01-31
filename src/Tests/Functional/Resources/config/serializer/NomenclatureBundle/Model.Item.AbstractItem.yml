@@ -1,0 +1,65 @@
+Evrinoma\NomenclatureBundle\Model\Item\AbstractItem:
+  exclusion_policy: ALL
+  properties:
+    id:
+      groups: [
+          API_GET_NOMENCLATURE, API_POST_NOMENCLATURE, API_PUT_NOMENCLATURE,
+          API_GET_NOMENCLATURE_ITEM, API_POST_NOMENCLATURE_ITEM, API_PUT_NOMENCLATURE_ITEM,
+      ]
+      expose: true
+    vendor:
+      groups: [
+          API_GET_NOMENCLATURE, API_POST_NOMENCLATURE, API_PUT_NOMENCLATURE,
+          API_GET_NOMENCLATURE_ITEM, API_POST_NOMENCLATURE_ITEM, API_PUT_NOMENCLATURE_ITEM,
+      ]
+      expose: true
+    standard:
+      groups: [
+          API_GET_NOMENCLATURE, API_POST_NOMENCLATURE, API_PUT_NOMENCLATURE,
+          API_GET_NOMENCLATURE_ITEM, API_POST_NOMENCLATURE_ITEM, API_PUT_NOMENCLATURE_ITEM,
+      ]
+      expose: true
+    active:
+      groups: [
+          API_GET_NOMENCLATURE, API_POST_NOMENCLATURE, API_PUT_NOMENCLATURE,
+          API_GET_NOMENCLATURE_ITEM, API_POST_NOMENCLATURE_ITEM, API_PUT_NOMENCLATURE_ITEM,
+      ]
+      expose: true
+    position:
+      groups: [
+          API_GET_NOMENCLATURE, API_POST_NOMENCLATURE, API_PUT_NOMENCLATURE,
+          API_GET_NOMENCLATURE_ITEM, API_POST_NOMENCLATURE_ITEM, API_PUT_NOMENCLATURE_ITEM,
+      ]
+      expose: true
+    image:
+      groups: [
+          API_GET_NOMENCLATURE, API_POST_NOMENCLATURE, API_PUT_NOMENCLATURE,
+          API_GET_NOMENCLATURE_ITEM, API_POST_NOMENCLATURE_ITEM, API_PUT_NOMENCLATURE_ITEM,
+      ]
+      expose: true
+    preview:
+      groups: [
+          API_GET_NOMENCLATURE, API_POST_NOMENCLATURE, API_PUT_NOMENCLATURE,
+          API_GET_NOMENCLATURE_ITEM, API_POST_NOMENCLATURE_ITEM, API_PUT_NOMENCLATURE_ITEM,
+      ]
+      expose: true
+    attachment:
+      groups: [
+          API_GET_NOMENCLATURE, API_POST_NOMENCLATURE, API_PUT_NOMENCLATURE,
+          API_GET_NOMENCLATURE_ITEM, API_POST_NOMENCLATURE_ITEM, API_PUT_NOMENCLATURE_ITEM,
+      ]
+      expose: true
+    nomenclature:
+      type: Evrinoma\NomenclatureBundle\Model\Nomenclature\AbstractNomenclature
+      groups: [
+          API_GET_NOMENCLATURE, API_POST_NOMENCLATURE, API_PUT_NOMENCLATURE,
+          API_GET_NOMENCLATURE_ITEM, API_POST_NOMENCLATURE_ITEM, API_PUT_NOMENCLATURE_ITEM,
+      ]
+      expose: true
+    attributes:
+      type: array
+      groups: [
+          API_GET_NOMENCLATURE, API_POST_NOMENCLATURE, API_PUT_NOMENCLATURE,
+          API_GET_NOMENCLATURE_ITEM, API_POST_NOMENCLATURE_ITEM, API_PUT_NOMENCLATURE_ITEM,
+      ]
+      expose: true

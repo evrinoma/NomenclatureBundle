@@ -1,0 +1,73 @@
+Evrinoma\NomenclatureBundle\Model\Nomenclature\AbstractNomenclature:
+  exclusion_policy: ALL
+  properties:
+    id:
+      groups: [
+          API_GET_NOMENCLATURE, API_POST_NOMENCLATURE, API_PUT_NOMENCLATURE,
+          API_GET_NOMENCLATURE_ITEM, API_POST_NOMENCLATURE_ITEM, API_PUT_NOMENCLATURE_ITEM,
+      ]
+      expose: true
+    createdAt:
+      type: DateTimeImmutable<'Y-m-d H:i'>
+      groups: [
+          API_GET_NOMENCLATURE, API_POST_NOMENCLATURE, API_PUT_NOMENCLATURE,
+          API_GET_NOMENCLATURE_ITEM, API_POST_NOMENCLATURE_ITEM, API_PUT_NOMENCLATURE_ITEM,
+      ]
+      expose: true
+    updatedAt:
+      type: DateTimeImmutable<'Y-m-d H:i'>
+      groups: [
+          API_GET_NOMENCLATURE, API_POST_NOMENCLATURE, API_PUT_NOMENCLATURE,
+          API_GET_NOMENCLATURE_ITEM, API_POST_NOMENCLATURE_ITEM, API_PUT_NOMENCLATURE_ITEM,
+      ]
+      expose: true
+    active:
+      groups: [
+          API_GET_NOMENCLATURE, API_POST_NOMENCLATURE, API_PUT_NOMENCLATURE,
+          API_GET_NOMENCLATURE_ITEM, API_POST_NOMENCLATURE_ITEM, API_PUT_NOMENCLATURE_ITEM,
+      ]
+      expose: true
+    title:
+      groups: [
+          API_GET_NOMENCLATURE, API_POST_NOMENCLATURE, API_PUT_NOMENCLATURE,
+          API_GET_NOMENCLATURE_ITEM, API_POST_NOMENCLATURE_ITEM, API_PUT_NOMENCLATURE_ITEM,
+      ]
+      expose: true
+    position:
+      groups: [
+          API_GET_NOMENCLATURE, API_POST_NOMENCLATURE, API_PUT_NOMENCLATURE,
+          API_GET_NOMENCLATURE_ITEM, API_POST_NOMENCLATURE_ITEM, API_PUT_NOMENCLATURE_ITEM,
+      ]
+      expose: true
+    image:
+      groups: [
+          API_GET_NOMENCLATURE, API_POST_NOMENCLATURE, API_PUT_NOMENCLATURE,
+          API_GET_NOMENCLATURE_ITEM, API_POST_NOMENCLATURE_ITEM, API_PUT_NOMENCLATURE_ITEM,
+      ]
+      expose: true
+    preview:
+      groups: [
+          API_GET_NOMENCLATURE, API_POST_NOMENCLATURE, API_PUT_NOMENCLATURE,
+          API_GET_NOMENCLATURE_ITEM, API_POST_NOMENCLATURE_ITEM, API_PUT_NOMENCLATURE_ITEM,
+      ]
+      expose: true
+    description:
+      groups: [
+          API_GET_NOMENCLATURE, API_POST_NOMENCLATURE, API_PUT_NOMENCLATURE,
+          API_GET_NOMENCLATURE_ITEM, API_POST_NOMENCLATURE_ITEM, API_PUT_NOMENCLATURE_ITEM,
+      ]
+      expose: true
+    start:
+      type: DateTimeImmutable<'Y-m-d'>
+      groups: [
+          API_GET_NOMENCLATURE, API_POST_NOMENCLATURE, API_PUT_NOMENCLATURE,
+          API_GET_NOMENCLATURE_ITEM, API_POST_NOMENCLATURE_ITEM, API_PUT_NOMENCLATURE_ITEM,
+      ]
+      expose: true
+    item:
+      type: ArrayCollection<Evrinoma\NomenclatureBundle\Model\Item\AbstractItem>
+      groups: [
+          API_GET_NOMENCLATURE, API_POST_NOMENCLATURE, API_PUT_NOMENCLATURE,
+          API_GET_NOMENCLATURE_ITEM, API_POST_NOMENCLATURE_ITEM, API_PUT_NOMENCLATURE_ITEM,
+      ]
+      expose: true
