@@ -90,7 +90,7 @@ trait BaseItemTestTrait
         Assert::assertArrayHasKey(ItemApiDtoInterface::VENDOR, $entity);
         Assert::assertArrayHasKey(ItemApiDtoInterface::ACTIVE, $entity);
         Assert::assertArrayHasKey(ItemApiDtoInterface::IMAGE, $entity);
-        Assert::assertArrayHasKey(ItemApiDtoInterface::NOMENCLATURE, $entity);
+        Assert::assertArrayHasKey(ItemApiDtoInterface::NOMENCLATURES, $entity);
         Assert::assertArrayHasKey(ItemApiDtoInterface::IMAGE, $entity);
         Assert::assertArrayHasKey(ItemApiDtoInterface::PREVIEW, $entity);
         Assert::assertArrayHasKey(ItemApiDtoInterface::ATTACHMENT, $entity);

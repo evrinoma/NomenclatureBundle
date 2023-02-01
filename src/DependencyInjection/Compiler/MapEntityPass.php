@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace Evrinoma\NomenclatureBundle\DependencyInjection\Compiler;
 
-use Doctrine\Common\Annotations\AnnotationReader;
-use Doctrine\ORM\Mapping;
 use Evrinoma\NomenclatureBundle\DependencyInjection\EvrinomaNomenclatureExtension;
 use Evrinoma\NomenclatureBundle\Model\Item\ItemInterface;
 use Evrinoma\NomenclatureBundle\Model\Nomenclature\NomenclatureInterface;
@@ -45,23 +43,23 @@ class MapEntityPass extends AbstractMapEntity implements CompilerPassInterface
 
             $this->addResolveTargetEntity([$entityItem => [ItemInterface::class => []]], false);
 
+            $mapping = $this->getManyToManyRelation();
+            $this->addResolveTargetEntity([$entityItem => [ItemInterface::class => ['joinTable' => $mapping]]], false);
+
             $entityNomenclature = $container->getParameter('evrinoma.nomenclature.entity_nomenclature');
             if (str_contains($entityNomenclature, EvrinomaNomenclatureExtension::ENTITY)) {
                 $this->loadMetadata($driver, $referenceAnnotationReader, '%s/Model/Nomenclature', '%s/Entity/Nomenclature');
             }
+
             $this->addResolveTargetEntity([$entityNomenclature => [NomenclatureInterface::class => []]], false);
 
-            $mapping = $this->getMapping($entityItem);
-            $this->addResolveTargetEntity([$entityItem => [ItemInterface::class => ['inherited' => true, 'joinTable' => $mapping]]], false);
+            $mapping = $this->getManyToManyRelation();
+            $this->addResolveTargetEntity([$entityNomenclature => [NomenclatureInterface::class => ['inherited' => true, 'joinTable' => $mapping]]], false);
         }
     }
 
-    private function getMapping(string $className): array
+    private function getManyToManyRelation(): array
     {
-        $annotationReader = new AnnotationReader();
-        $reflectionClass = new \ReflectionClass($className);
-        $joinTableAttribute = $annotationReader->getClassAnnotation($reflectionClass, Mapping\Table::class);
-
-        return ($joinTableAttribute) ? ['name' => $joinTableAttribute->name] : [];
+        return ['name' => 'e_nomenclature_items_nomenclatures'];
     }
 }

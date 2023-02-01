@@ -71,6 +71,8 @@ services:
   evrinoma.nomenclature.nomenclature.command.mediator:
     class: Evrinoma\NomenclatureBundle\Mediator\Nomenclature\CommandMediator
     public: true
+    arguments:
+      - '@evrinoma.nomenclature.item.query.manager'
 
   Evrinoma\NomenclatureBundle\Mediator\Nomenclature\CommandMediator:
     alias: evrinoma.nomenclature.nomenclature.command.mediator

@@ -48,7 +48,6 @@ abstract class AbstractNomenclature implements NomenclatureInterface
      *
      * @ORM\ManyToMany(targetEntity="Evrinoma\NomenclatureBundle\Model\Item\ItemInterface")
      * @ORM\JoinTable(
-     *     name="e_nomenclature_nomenclature_phones",
      *     joinColumns={@ORM\JoinColumn(name="nomenclature_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="item_id", referencedColumnName="id")}
      * )

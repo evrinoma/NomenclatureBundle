@@ -67,11 +67,29 @@ final class NomenclatureApiController extends AbstractWrappedApiController imple
      *             @OA\Schema(
      *                 allOf={
      *                     @OA\Schema(
+     *                         example={
+     *                             "class": "Evrinoma\NomenclatureBundle\Dto\NomenclatureApiDto",
+     *                             "title": "bla bla",
+     *                             "description": "bla bla",
+     *                             "position": "0",
+     *                             "items": {
+     *                                 {
+     *                                     "class": "Evrinoma\NomenclatureBundle\Dto\ItemApiDto",
+     *                                     "id": "1",
+     *                                 },
+     *                             },
+     *                         },
      *                         type="object",
      *                         @OA\Property(property="class", type="string", default="Evrinoma\NomenclatureBundle\Dto\NomenclatureApiDto"),
      *                         @OA\Property(property="title", type="string"),
      *                         @OA\Property(property="description", type="string"),
      *                         @OA\Property(property="position", type="string"),
+     *                         @OA\Property(property="items", type="array",
+     *                             @OA\Items(type="object",
+     *                                 @OA\Property(property="class", type="string", default="Evrinoma\NomenclatureBundle\Dto\ItemApiDto"),
+     *                                 @OA\Property(property="id", type="string", default="1"),
+     *                             )
+     *                         ),
      *                     )
      *                 }
      *             )
@@ -114,6 +132,20 @@ final class NomenclatureApiController extends AbstractWrappedApiController imple
      *             @OA\Schema(
      *                 allOf={
      *                     @OA\Schema(
+     *                         example={
+     *                             "class": "Evrinoma\NomenclatureBundle\Dto\NomenclatureApiDto",
+     *                             "title": "bla bla",
+     *                             "id": "1",
+     *                             "description": "bla bla",
+     *                             "active": "b",
+     *                             "position": "0",
+     *                             "items": {
+     *                                 {
+     *                                     "class": "Evrinoma\NomenclatureBundle\Dto\ItemApiDto",
+     *                                     "id": "1",
+     *                                 },
+     *                             },
+     *                         },
      *                         type="object",
      *                         @OA\Property(property="class", type="string", default="Evrinoma\NomenclatureBundle\Dto\NomenclatureApiDto"),
      *                         @OA\Property(property="id", type="string"),
@@ -121,6 +153,12 @@ final class NomenclatureApiController extends AbstractWrappedApiController imple
      *                         @OA\Property(property="title", type="string"),
      *                         @OA\Property(property="description", type="string"),
      *                         @OA\Property(property="position", type="string"),
+     *                         @OA\Property(property="items", type="array",
+     *                             @OA\Items(type="object",
+     *                                 @OA\Property(property="class", type="string", default="Evrinoma\NomenclatureBundle\Dto\ItemApiDto"),
+     *                                 @OA\Property(property="id", type="string", default="1"),
+     *                             )
+     *                         ),
      *                     )
      *                 }
      *             )

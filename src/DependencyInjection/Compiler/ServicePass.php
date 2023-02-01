@@ -47,12 +47,14 @@ class ServicePass extends AbstractRecursivePass
             $facade = $container->getDefinition('evrinoma.'.EvrinomaNomenclatureBundle::BUNDLE.'.'.$name.'.facade');
             $facade->setArgument(4, $handler);
         }
-        $serviceFileSystem = $container->hasParameter('evrinoma.'.EvrinomaNomenclatureBundle::BUNDLE.'.'.$name.'.services.system.item_system');
-        if ($serviceFileSystem) {
-            $serviceFileSystem = $container->getParameter('evrinoma.'.EvrinomaNomenclatureBundle::BUNDLE.'.'.$name.'.services.system.item_system');
-            $fileSystem = $container->getDefinition($serviceFileSystem);
-            $commandMediator = $container->getDefinition('evrinoma.'.EvrinomaNomenclatureBundle::BUNDLE.'.'.$name.'.command.mediator');
-            $commandMediator->setArgument(0, $fileSystem);
+        if ('item' === $name) {
+            $serviceFileSystem = $container->hasParameter('evrinoma.'.EvrinomaNomenclatureBundle::BUNDLE.'.'.$name.'.services.system.item_system');
+            if ($serviceFileSystem) {
+                $serviceFileSystem = $container->getParameter('evrinoma.'.EvrinomaNomenclatureBundle::BUNDLE.'.'.$name.'.services.system.item_system');
+                $fileSystem = $container->getDefinition($serviceFileSystem);
+                $commandMediator = $container->getDefinition('evrinoma.'.EvrinomaNomenclatureBundle::BUNDLE.'.'.$name.'.command.mediator');
+                $commandMediator->setArgument(0, $fileSystem);
+            }
         }
     }
 }

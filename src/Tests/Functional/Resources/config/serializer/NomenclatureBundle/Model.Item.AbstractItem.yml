@@ -49,8 +49,8 @@ Evrinoma\NomenclatureBundle\Model\Item\AbstractItem:
           API_GET_NOMENCLATURE_ITEM, API_POST_NOMENCLATURE_ITEM, API_PUT_NOMENCLATURE_ITEM,
       ]
       expose: true
-    nomenclature:
-      type: Evrinoma\NomenclatureBundle\Model\Nomenclature\AbstractNomenclature
+    nomenclatures:
+      type: ArrayCollection<Evrinoma\NomenclatureBundle\Model\Nomenclature\AbstractNomenclature>
       groups: [
           API_GET_NOMENCLATURE, API_POST_NOMENCLATURE, API_PUT_NOMENCLATURE,
           API_GET_NOMENCLATURE_ITEM, API_POST_NOMENCLATURE_ITEM, API_PUT_NOMENCLATURE_ITEM,

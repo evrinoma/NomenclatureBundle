@@ -67,11 +67,14 @@ final class ItemApiController extends AbstractWrappedApiController implements Ap
      *                     @OA\Schema(
      *                         type="object",
      *                         @OA\Property(property="class", type="string", default="Evrinoma\NomenclatureBundle\Dto\ItemApiDto"),
-     *                         @OA\Property(property="description", type="string"),
+     *                         @OA\Property(property="vendor", type="string"),
+     *                         @OA\Property(property="standard", type="string"),
      *                         @OA\Property(property="position", type="int"),
-     *                         @OA\Property(property="nomenclature", type="object",
-     *                             @OA\Property(property="class", type="string", default="Evrinoma\NomenclatureBundle\Dto\NomenclatureApiDto"),
-     *                             @OA\Property(property="id", type="string", default="1"),
+     *                         @OA\Property(property="nomenclatures", type="array",
+     *                             @OA\Items(type="object",
+     *                                 @OA\Property(property="class", type="string", default="Evrinoma\NomenclatureBundle\Dto\NomenclatureApiDto"),
+     *                                 @OA\Property(property="id", type="string", default="1"),
+     *                             )
      *                         ),
      *                         @OA\Property(property="image", type="string"),
      *                         @OA\Property(property="preview", type="string"),
@@ -122,13 +125,16 @@ final class ItemApiController extends AbstractWrappedApiController implements Ap
      *                     @OA\Schema(
      *                         type="object",
      *                         @OA\Property(property="class", type="string", default="Evrinoma\NomenclatureBundle\Dto\ItemApiDto"),
-     *                         @OA\Property(property="description", type="string"),
      *                         @OA\Property(property="position", type="int"),
      *                         @OA\Property(property="id", type="string"),
      *                         @OA\Property(property="active", type="string"),
-     *                         @OA\Property(property="nomenclature", type="object",
-     *                             @OA\Property(property="class", type="string", default="Evrinoma\NomenclatureBundle\Dto\NomenclatureApiDto"),
-     *                             @OA\Property(property="id", type="string", default="1"),
+     *                         @OA\Property(property="vendor", type="string"),
+     *                         @OA\Property(property="standard", type="string"),
+     *                         @OA\Property(property="nomenclatures", type="array",
+     *                             @OA\Items(type="object",
+     *                                 @OA\Property(property="class", type="string", default="Evrinoma\NomenclatureBundle\Dto\NomenclatureApiDto"),
+     *                                 @OA\Property(property="id", type="string", default="1"),
+     *                             )
      *                         ),
      *                         @OA\Property(property="image", type="string"),
      *                         @OA\Property(property="preview", type="string"),
@@ -245,9 +251,17 @@ final class ItemApiController extends AbstractWrappedApiController implements Ap
      *         )
      *     ),
      *     @OA\Parameter(
-     *         description="description",
+     *         description="standard",
      *         in="query",
-     *         name="description",
+     *         name="standard",
+     *         @OA\Schema(
+     *             type="string",
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         description="vendor",
+     *         in="query",
+     *         name="vendor",
      *         @OA\Schema(
      *             type="string",
      *         )

@@ -30,7 +30,7 @@ class ItemFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
             ItemApiDtoInterface::ACTIVE => 'a',
             ItemApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             ItemApiDtoInterface::POSITION => 1,
-            NomenclatureApiDtoInterface::NOMENCLATURE => 0,
+            NomenclatureApiDtoInterface::NOMENCLATURES => [1, 2],
             ItemApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
             ItemApiDtoInterface::ATTACHMENT => 'PATH://TO_IMAGE_ATTACHMENT',
             ItemApiDtoInterface::ATTRIBUTES => ['test_class' => 'test_log'],
@@ -41,7 +41,7 @@ class ItemFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
             ItemApiDtoInterface::ACTIVE => 'a',
             ItemApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             ItemApiDtoInterface::POSITION => 2,
-            NomenclatureApiDtoInterface::NOMENCLATURE => 1,
+            NomenclatureApiDtoInterface::NOMENCLATURES => [2, 3],
             ItemApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
             ItemApiDtoInterface::ATTACHMENT => 'PATH://TO_IMAGE_ATTACHMENT',
             ItemApiDtoInterface::ATTRIBUTES => ['test_class' => 'test_log'],
@@ -52,7 +52,7 @@ class ItemFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
             ItemApiDtoInterface::ACTIVE => 'a',
             ItemApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             ItemApiDtoInterface::POSITION => 3,
-            NomenclatureApiDtoInterface::NOMENCLATURE => 0,
+            NomenclatureApiDtoInterface::NOMENCLATURES => [3, 4],
             ItemApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
             ItemApiDtoInterface::ATTACHMENT => 'PATH://TO_IMAGE_ATTACHMENT',
             ItemApiDtoInterface::ATTRIBUTES => ['test_class' => 'test_log'],
@@ -63,7 +63,7 @@ class ItemFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
             ItemApiDtoInterface::ACTIVE => 'd',
             ItemApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             ItemApiDtoInterface::POSITION => 4,
-            NomenclatureApiDtoInterface::NOMENCLATURE => 1,
+            NomenclatureApiDtoInterface::NOMENCLATURES => [5, 6],
             ItemApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
             ItemApiDtoInterface::ATTACHMENT => 'PATH://TO_IMAGE_ATTACHMENT',
             ItemApiDtoInterface::ATTRIBUTES => ['test_class' => 'test_log'],
@@ -74,7 +74,7 @@ class ItemFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
             ItemApiDtoInterface::ACTIVE => 'b',
             ItemApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             ItemApiDtoInterface::POSITION => 5,
-            NomenclatureApiDtoInterface::NOMENCLATURE => 0,
+            NomenclatureApiDtoInterface::NOMENCLATURES => [0, 1],
             ItemApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
             ItemApiDtoInterface::ATTACHMENT => 'PATH://TO_IMAGE_ATTACHMENT',
             ItemApiDtoInterface::ATTRIBUTES => ['test_class' => 'test_log'],
@@ -85,7 +85,7 @@ class ItemFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
             ItemApiDtoInterface::ACTIVE => 'd',
             ItemApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             ItemApiDtoInterface::POSITION => 6,
-            NomenclatureApiDtoInterface::NOMENCLATURE => 1,
+            NomenclatureApiDtoInterface::NOMENCLATURES => [2, 3],
             ItemApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
             ItemApiDtoInterface::ATTACHMENT => 'PATH://TO_IMAGE_ATTACHMENT',
             ItemApiDtoInterface::ATTRIBUTES => ['test_class' => 'test_log'],
@@ -96,7 +96,7 @@ class ItemFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
             ItemApiDtoInterface::ACTIVE => 'd',
             ItemApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             ItemApiDtoInterface::POSITION => 7,
-            NomenclatureApiDtoInterface::NOMENCLATURE => 2,
+            NomenclatureApiDtoInterface::NOMENCLATURES => [4, 5],
             ItemApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
             ItemApiDtoInterface::ATTACHMENT => 'PATH://TO_IMAGE_ATTACHMENT',
             ItemApiDtoInterface::ATTRIBUTES => ['test_class' => 'test_log'],
@@ -123,7 +123,6 @@ class ItemFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
             $entity
                 ->setStandard($record[ItemApiDtoInterface::STANDARD])
                 ->setVendor($record[ItemApiDtoInterface::VENDOR])
-                ->setNomenclature($this->getReference($shortNomenclature.$record[NomenclatureApiDtoInterface::NOMENCLATURE]))
                 ->setActive($record[ItemApiDtoInterface::ACTIVE])
                 ->setPosition($record[ItemApiDtoInterface::POSITION])
                 ->setAttributes($record[ItemApiDtoInterface::ATTRIBUTES])
@@ -143,6 +142,11 @@ class ItemFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
             if (\array_key_exists(ItemApiDtoInterface::ATTACHMENT, $record)) {
                 $entity
                     ->setAttachment($record[ItemApiDtoInterface::ATTACHMENT]);
+            }
+
+            foreach ($record[ItemApiDtoInterface::NOMENCLATURES] as $value) {
+                $entity
+                    ->addNomenclature($this->getReference($shortNomenclature.$value));
             }
 
             $this->expandEntity($entity, $record);

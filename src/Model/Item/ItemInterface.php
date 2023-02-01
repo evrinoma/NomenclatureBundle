@@ -27,9 +27,9 @@ interface ItemInterface extends ActiveInterface, IdInterface, CreateUpdateAtInte
 {
     public function getNomenclatures(): Collection;
 
-    public function addNomenclature(NomenclatureInterface $nomenclature): NomenclatureInterface;
+    public function addNomenclature(NomenclatureInterface $nomenclature): ItemInterface;
 
-    public function removeNomenclature(NomenclatureInterface $nomenclature): NomenclatureInterface;
+    public function removeNomenclature(NomenclatureInterface $nomenclature): ItemInterface;
 
     public function getVendor(): ?string;
 

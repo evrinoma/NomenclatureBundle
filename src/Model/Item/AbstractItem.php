@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Evrinoma\NomenclatureBundle\Model\Item;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Evrinoma\NomenclatureBundle\Model\Nomenclature\NomenclatureInterface;
 use Evrinoma\UtilsBundle\Entity\ActiveTrait;
@@ -131,7 +132,7 @@ abstract class AbstractItem implements ItemInterface
         return $this->nomenclatures;
     }
 
-    public function addNomenclature(NomenclatureInterface $nomenclature): NomenclatureInterface
+    public function addNomenclature(NomenclatureInterface $nomenclature): ItemInterface
     {
         if (!$this->nomenclatures->contains($nomenclature)) {
             $this->nomenclatures[] = $nomenclature;
@@ -140,7 +141,7 @@ abstract class AbstractItem implements ItemInterface
         return $this;
     }
 
-    public function removeNomenclature(NomenclatureInterface $nomenclature): NomenclatureInterface
+    public function removeNomenclature(NomenclatureInterface $nomenclature): ItemInterface
     {
         $this->nomenclatures->removeElement($nomenclature);
 

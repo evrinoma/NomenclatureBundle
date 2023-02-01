@@ -65,5 +65,6 @@ trait BaseNomenclatureTestTrait
         Assert::assertArrayHasKey(NomenclatureApiDtoInterface::ACTIVE, $entity);
         Assert::assertArrayHasKey(NomenclatureApiDtoInterface::POSITION, $entity);
         Assert::assertArrayHasKey(NomenclatureApiDtoInterface::DESCRIPTION, $entity);
+        Assert::assertArrayHasKey(NomenclatureApiDtoInterface::ITEMS, $entity);
     }
 }
