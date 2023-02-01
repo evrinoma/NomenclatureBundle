@@ -16,7 +16,6 @@ namespace Evrinoma\NomenclatureBundle\DependencyInjection\Compiler;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\ORM\Mapping;
 use Evrinoma\NomenclatureBundle\DependencyInjection\EvrinomaNomenclatureExtension;
-use Evrinoma\NomenclatureBundle\Entity\Item\BaseItem;
 use Evrinoma\NomenclatureBundle\Model\Item\ItemInterface;
 use Evrinoma\NomenclatureBundle\Model\Nomenclature\NomenclatureInterface;
 use Evrinoma\UtilsBundle\DependencyInjection\Compiler\AbstractMapEntity;
@@ -39,13 +38,14 @@ class MapEntityPass extends AbstractMapEntity implements CompilerPassInterface
 
             $this->cleanMetadata($driver, [EvrinomaNomenclatureExtension::ENTITY]);
 
-            $entityItem = BaseItem::class;
-
-            $this->loadMetadata($driver, $referenceAnnotationReader, '%s/Model/Item', '%s/Entity/Item');
+            $entityItem = $container->getParameter('evrinoma.nomenclature.entity_item');
+            if (str_contains($entityItem, EvrinomaNomenclatureExtension::ENTITY)) {
+                $this->loadMetadata($driver, $referenceAnnotationReader, '%s/Model/Item', '%s/Entity/Item');
+            }
 
             $this->addResolveTargetEntity([$entityItem => [ItemInterface::class => []]], false);
 
-            $entityNomenclature = $container->getParameter('evrinoma.nomenclature.entity');
+            $entityNomenclature = $container->getParameter('evrinoma.nomenclature.entity_nomenclature');
             if (str_contains($entityNomenclature, EvrinomaNomenclatureExtension::ENTITY)) {
                 $this->loadMetadata($driver, $referenceAnnotationReader, '%s/Model/Nomenclature', '%s/Entity/Nomenclature');
             }

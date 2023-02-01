@@ -20,6 +20,7 @@ use Evrinoma\NomenclatureBundle\Dto\NomenclatureApiDto;
 use Evrinoma\NomenclatureBundle\Entity\Item\BaseItem;
 use Evrinoma\NomenclatureBundle\Entity\Nomenclature\BaseNomenclature;
 use Evrinoma\NomenclatureBundle\EvrinomaNomenclatureBundle;
+use Evrinoma\NomenclatureBundle\Factory\Item\Factory as ItemFactory;
 use Evrinoma\NomenclatureBundle\Factory\Nomenclature\Factory as NomenclatureFactory;
 use Evrinoma\NomenclatureBundle\Mediator\Item\QueryMediatorInterface as ItemQueryMediatorInterface;
 use Evrinoma\NomenclatureBundle\Mediator\Nomenclature\QueryMediatorInterface as NomenclatureQueryMediatorInterface;
@@ -41,8 +42,11 @@ class EvrinomaNomenclatureExtension extends Extension
     public const ENTITY = 'Evrinoma\NomenclatureBundle\Entity';
     public const MODEL = 'Evrinoma\NomenclatureBundle\Model';
     public const ENTITY_FACTORY_NOMENCLATURE = NomenclatureFactory::class;
+    public const ENTITY_FACTORY_ITEM = ItemFactory::class;
     public const ENTITY_BASE_NOMENCLATURE = BaseNomenclature::class;
     public const DTO_BASE_NOMENCLATURE = NomenclatureApiDto::class;
+    public const ENTITY_BASE_ITEM = BaseItem::class;
+    public const DTO_BASE_ITEM = ItemApiDto::class;
     public const HANDLER = BaseHandler::class;
 
     /**
@@ -71,11 +75,18 @@ class EvrinomaNomenclatureExtension extends Extension
         $configuration = $this->getConfiguration($configs, $container);
         $config = $this->processConfiguration($configuration, $configs);
 
-        if (self::ENTITY_FACTORY_NOMENCLATURE !== $config['factory']) {
-            $this->wireFactory($container, $config['factory'], $config['entity']);
+        if (self::ENTITY_FACTORY_NOMENCLATURE !== $config['factory_nomenclature']) {
+            $this->wireFactory($container, $config['factory_nomenclature'], $config['entity_nomenclature']);
         } else {
             $definitionFactory = $container->getDefinition('evrinoma.'.$this->getAlias().'.nomenclature.factory');
-            $definitionFactory->setArgument(0, $config['entity']);
+            $definitionFactory->setArgument(0, $config['entity_nomenclature']);
+        }
+
+        if (self::ENTITY_FACTORY_ITEM !== $config['factory_item']) {
+            $this->wireFactory($container, $config['factory_item'], $config['entity_item']);
+        } else {
+            $definitionFactory = $container->getDefinition('evrinoma.'.$this->getAlias().'.item.factory');
+            $definitionFactory->setArgument(0, $config['entity_item']);
         }
 
         $registry = null;
@@ -106,21 +117,22 @@ class EvrinomaNomenclatureExtension extends Extension
             [
                 '' => [
                     'db_driver' => 'evrinoma.'.$this->getAlias().'.storage',
-                    'entity' => 'evrinoma.'.$this->getAlias().'.entity',
+                    'entity_nomenclature' => 'evrinoma.'.$this->getAlias().'.entity_nomenclature',
+                    'entity_item' => 'evrinoma.'.$this->getAlias().'.entity_item',
                 ],
             ]
         );
 
         if ($registry && isset(self::$doctrineDrivers[$config['db_driver']])) {
-            $this->wireRepository($container, $registry, NomenclatureQueryMediatorInterface::class, 'nomenclature', $config['entity'], $config['db_driver']);
-            $this->wireRepository($container, $registry, ItemQueryMediatorInterface::class, 'item', BaseItem::class, $config['db_driver']);
+            $this->wireRepository($container, $registry, NomenclatureQueryMediatorInterface::class, 'nomenclature', $config['entity_nomenclature'], $config['db_driver']);
+            $this->wireRepository($container, $registry, ItemQueryMediatorInterface::class, 'item', $config['entity_item'], $config['db_driver']);
         }
 
-        $this->wireController($container, 'nomenclature', $config['dto']);
-        $this->wireController($container, 'item', ItemApiDto::class);
+        $this->wireController($container, 'nomenclature', $config['dto_nomenclature']);
+        $this->wireController($container, 'item', $config['dto_item']);
 
-        $this->wireValidator($container, 'nomenclature', $config['entity']);
-        $this->wireValidator($container, 'item', BaseItem::class);
+        $this->wireValidator($container, 'nomenclature', $config['entity_nomenclature']);
+        $this->wireValidator($container, 'item', $config['entity_item']);
 
         if ($config['constraints']) {
             $loader->load('validation.yml');
@@ -135,11 +147,17 @@ class EvrinomaNomenclatureExtension extends Extension
             foreach ($config['decorates'] as $key => $service) {
                 if (null !== $service) {
                     switch ($key) {
-                        case 'command':
-                            $remap['command'] = 'evrinoma.'.$this->getAlias().'.nomenclature.decorates.command';
+                        case 'command_nomenclature':
+                            $remap['command_nomenclature'] = 'evrinoma.'.$this->getAlias().'.nomenclature.decorates.command';
                             break;
-                        case 'query':
-                            $remap['query'] = 'evrinoma.'.$this->getAlias().'.nomenclature.decorates.query';
+                        case 'query_nomenclature':
+                            $remap['query_nomenclature'] = 'evrinoma.'.$this->getAlias().'.nomenclature.decorates.query';
+                            break;
+                        case 'command_item':
+                            $remap['command_item'] = 'evrinoma.'.$this->getAlias().'.item.decorates.command';
+                            break;
+                        case 'query_item':
+                            $remap['query_item'] = 'evrinoma.'.$this->getAlias().'.item.decorates.query';
                             break;
                     }
                 }
@@ -157,11 +175,17 @@ class EvrinomaNomenclatureExtension extends Extension
             foreach ($config['services'] as $key => $service) {
                 if (null !== $service) {
                     switch ($key) {
-                        case 'pre_validator':
-                            $remap['pre_validator'] = 'evrinoma.'.$this->getAlias().'.nomenclature.services.pre.validator';
+                        case 'pre_validator_nomenclature':
+                            $remap['pre_validator_nomenclature'] = 'evrinoma.'.$this->getAlias().'.nomenclature.services.pre.validator';
                             break;
                         case 'handler':
-                            $remap['handler'] = 'evrinoma.'.$this->getAlias().'.nomenclature.services.handler';
+                            $remap['handler_nomenclature'] = 'evrinoma.'.$this->getAlias().'.nomenclature.services.handler';
+                            break;
+                        case 'pre_validator_item':
+                            $remap['pre_validator_item'] = 'evrinoma.'.$this->getAlias().'.nomenclature.services.pre.validator';
+                            break;
+                        case 'handler_item':
+                            $remap['handler_item'] = 'evrinoma.'.$this->getAlias().'.nomenclature.services.handler';
                             break;
                         case 'file_system':
                             $remap['file_system'] = 'evrinoma.'.$this->getAlias().'.nomenclature.services.system.item_system';

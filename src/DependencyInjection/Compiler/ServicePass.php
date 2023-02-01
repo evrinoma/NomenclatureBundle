@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class ServicePass extends AbstractRecursivePass
 {
-    private array $services = ['nomenclature'];
+    private array $services = ['nomenclature', 'item'];
 
     /**
      * {@inheritDoc}

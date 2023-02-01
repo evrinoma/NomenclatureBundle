@@ -21,17 +21,25 @@
 
     nomenclature:
         db_driver: orm модель данных
-        factory: App\Nomenclature\Factory\NomenclatureFactory фабрика для создания объектов,
+        factory_nomenclature: App\Nomenclature\Factory\NomenclatureFactory фабрика для создания объектов номенклатуры,
                  недостающие значения можно разрешить только на уровне Mediator
-        entity: App\Nomenclature\Entity\Nomenclature сущность
+        factory_item: App\Nomenclature\Factory\ItemFactory фабрика для создания объектов элементов номенклатуры,
+                 недостающие значения можно разрешить только на уровне Mediator
+        entity_nomenclature: App\Nomenclature\Entity\Nomenclature сущность номенклатуры
+        entity_item: App\Nomenclature\Entity\Item сущность элемента номенклатуры
         constraints: Вкл/выкл проверки полей сущности по умолчанию 
-        dto: App\Nomenclature\Dto\NomenclatureDto класс dto с которым работает сущность
+        dto_nomenclature: App\Nomenclature\Dto\NomenclatureDto класс dto с которым работает сущность номенклатуры
+        dto_item: App\Nomenclature\Dto\ItemDto класс dto с которым работает сущность элемента номенклатуры
         decorates:
-          command - декоратор mediator команд номенклатуры
-          query - декоратор mediator запросов номенклатуры
+          command_nomenclature - декоратор mediator команд номенклатуры
+          query_nomenclature - декоратор mediator запросов номенклатуры
+          command_item - декоратор mediator команд элемента номенклатуры
+          query_item - декоратор mediator запросов элемента номенклатуры
         services:
-          pre_validator - переопределение сервиса валидатора номенклатуры
-          handler - переопределение сервиса обработчика сущностей
+          pre_validator_nomenclature - переопределение сервиса валидатора номенклатуры
+          handler_nomenclature - переопределение сервиса обработчика сущностей номенклатуры
+          pre_validator_item - переопределение сервиса валидатора элемента номенклатуры
+          handler_item - переопределение сервиса обработчика сущностей элемента номенклатуры
           file_system - переопределение сервиса сохранения файла
 
 # CQRS model
@@ -58,6 +66,10 @@ Actions в контроллере разбиты на две группы
     2. API_POST_NOMENCLATURE - создание номенклатуры
     3. API_PUT_NOMENCLATURE -  редактирование номенклатуры
 
+    4. API_GET_NOMENCLATURE_ITEM, API_CRITERIA_NOMENCLATURE_ITEM - получение элемента
+    5. API_POST_NOMENCLATURE_ITEM - создание элемента
+    6. API_PUT_NOMENCLATURE_ITEM -  редактирование элемента
+
 # Статусы:
 
     создание:
@@ -73,6 +85,21 @@ Actions в контроллере разбиты на две группы
         если номенклатура не уникальна UniqueConstraintViolationException возвращает HTTP_CONFLICT 409
         если номенклатура не прошла валидацию NomenclatureInvalidException возвращает HTTP_UNPROCESSABLE_ENTITY 422
         если номенклатура не может быть сохранена NomenclatureCannotBeSavedException возвращает HTTP_NOT_IMPLEMENTED 501
+        все остальные ошибки возвращаются как HTTP_BAD_REQUEST 400
+    
+    создание:
+        элемента номенклатуры создан HTTP_CREATED 201
+    обновление:
+        элемента номенклатуры обновлен HTTP_OK 200
+    удаление:
+        элемента номенклатуры удален HTTP_ACCEPTED 202
+    получение:
+        элемента номенклатуры найден HTTP_OK 200
+    ошибки:
+        если элемент номенклатуры не найден ContactNotFoundException возвращает HTTP_NOT_FOUND 404
+        если элемент номенклатуры не уникален UniqueConstraintViolationException возвращает HTTP_CONFLICT 409
+        если элемент номенклатуры не пройти валидацию ContactInvalidException возвращает HTTP_UNPROCESSABLE_ENTITY 422
+        если элемент номенклатуры не может быть сохранен ContactCannotBeSavedException возвращает HTTP_NOT_IMPLEMENTED 501
         все остальные ошибки возвращаются как HTTP_BAD_REQUEST 400
 
 # Constraint

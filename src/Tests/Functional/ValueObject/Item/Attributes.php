@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Evrinoma\NomenclatureBundle\Tests\Functional\ValueObject\Item;
 
+use Evrinoma\TestUtilsBundle\ValueObject\Common\AbstractArray;
+
 class Attributes extends AbstractArray
 {
     protected static array $value = ['D' => 'd', 'E' => 'e', 'F' => 'f'];

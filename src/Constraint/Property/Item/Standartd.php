@@ -11,13 +11,13 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Evrinoma\NomenclatureBundle\Constraint\Property\Nomenclature;
+namespace Evrinoma\NomenclatureBundle\Constraint\Property\Item;
 
 use Evrinoma\UtilsBundle\Constraint\Property\ConstraintInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\NotNull;
 
-class Preview implements ConstraintInterface
+class Standartd implements ConstraintInterface
 {
     public function getConstraints(): array
     {
@@ -29,6 +29,6 @@ class Preview implements ConstraintInterface
 
     public function getPropertyName(): string
     {
-        return 'preview';
+        return 'standartd';
     }
 }

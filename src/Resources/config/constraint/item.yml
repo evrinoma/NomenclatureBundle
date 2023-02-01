@@ -1,11 +1,9 @@
 services:
-  evrinoma.nomenclature.constraint.property.item.description:
-    class: Evrinoma\NomenclatureBundle\Constraint\Property\Item\Description
-  evrinoma.nomenclature.constraint.property.item.brief:
-    class: Evrinoma\NomenclatureBundle\Constraint\Property\Item\Brief
+  evrinoma.nomenclature.constraint.property.item.vendor:
+    class: Evrinoma\NomenclatureBundle\Constraint\Property\Item\Vendor
   evrinoma.nomenclature.constraint.property.item.active:
     class: Evrinoma\NomenclatureBundle\Constraint\Property\Item\Active
-  evrinoma.nomenclature.constraint.property.item.image:
-    class: Evrinoma\NomenclatureBundle\Constraint\Property\Item\Image
-  evrinoma.nomenclature.constraint.property.item.item:
+  evrinoma.nomenclature.constraint.property.item.Standartd:
+    class: Evrinoma\NomenclatureBundle\Constraint\Property\Item\Standartd
+  evrinoma.nomenclature.constraint.property.item.postition:
     class: Evrinoma\NomenclatureBundle\Constraint\Property\Item\Position
