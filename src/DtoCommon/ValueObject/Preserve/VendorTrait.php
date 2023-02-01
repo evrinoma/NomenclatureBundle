@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Preserve;
 
-use Evrinoma\Dto\DtoInterface;
+use Evrinoma\DtoBundle\Dto\DtoInterface;
 
 trait VendorTrait
 {
