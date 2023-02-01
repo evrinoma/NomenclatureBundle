@@ -48,33 +48,38 @@ abstract class AbstractNomenclature implements NomenclatureInterface
      *
      * @ORM\ManyToMany(targetEntity="Evrinoma\NomenclatureBundle\Model\Item\ItemInterface")
      * @ORM\JoinTable(
+     *     name="e_nomenclature_nomenclature_phones",
      *     joinColumns={@ORM\JoinColumn(name="nomenclature_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="id", referencedColumnName="id")}
+     *     inverseJoinColumns={@ORM\JoinColumn(name="item_id", referencedColumnName="id")}
      * )
      */
-    protected $item;
+    protected $items;
 
     public function __construct()
     {
-        $this->item = new ArrayCollection();
+        $this->items = new ArrayCollection();
     }
 
     /**
      * @return Collection|ItemInterface[]
      */
-    public function getItem(): Collection
+    public function getItems(): Collection
     {
-        return $this->item;
+        return $this->items;
     }
 
-    /**
-     * @param Collection|ItemInterface[] $item
-     *
-     *  @return NomenclatureInterface
-     */
-    public function setItem($item): NomenclatureInterface
+    public function addItem(ItemInterface $item): NomenclatureInterface
     {
-        $this->item = $item;
+        if (!$this->items->contains($item)) {
+            $this->items[] = $item;
+        }
+
+        return $this;
+    }
+
+    public function removeItem(ItemInterface $item): NomenclatureInterface
+    {
+        $this->items->removeElement($item);
 
         return $this;
     }

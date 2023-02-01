@@ -22,10 +22,12 @@ use Evrinoma\DtoCommon\ValueObject\Immutable\PositionInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\PreviewInterface;
 use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Immutable\AttributesInterface;
 use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Immutable\NomenclatureApiDtoInterface;
+use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Immutable\NomenclaturesApiDtoInterface;
 use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Immutable\StandardInterface;
 use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Immutable\VendorInterface;
 
-interface ItemApiDtoInterface extends DtoInterface, IdInterface, ActiveInterface, NomenclatureApiDtoInterface, PositionInterface, AttachmentInterface, ImageInterface, PreviewInterface, AttributesInterface, VendorInterface, StandardInterface
+interface ItemApiDtoInterface extends DtoInterface, IdInterface, ActiveInterface, NomenclatureApiDtoInterface, NomenclaturesApiDtoInterface, PositionInterface, AttachmentInterface, ImageInterface, PreviewInterface, AttributesInterface, VendorInterface, StandardInterface
 {
     public const ITEM = 'item';
+    public const ITEMS = ItemApiDtoInterface::ITEM.'s';
 }

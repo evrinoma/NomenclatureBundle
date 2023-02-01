@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Evrinoma\NomenclatureBundle\Dto;
 
 use Evrinoma\DtoBundle\Annotation\Dto;
+use Evrinoma\DtoBundle\Annotation\Dtos;
 use Evrinoma\DtoBundle\Dto\AbstractDto;
 use Evrinoma\DtoBundle\Dto\DtoInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\ActiveTrait;
@@ -24,6 +25,7 @@ use Evrinoma\DtoCommon\ValueObject\Mutable\PositionTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\PreviewTrait;
 use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Mutable\AttributesTrait;
 use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Mutable\NomenclatureApiDtoTrait;
+use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Mutable\NomenclaturesApiDtoTrait;
 use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Mutable\StandardTrait;
 use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Mutable\VendorTrait;
 use Symfony\Component\HttpFoundation\File\File;
@@ -37,6 +39,7 @@ class ItemApiDto extends AbstractDto implements ItemApiDtoInterface
     use IdTrait;
     use ImageTrait;
     use NomenclatureApiDtoTrait;
+    use NomenclaturesApiDtoTrait;
     use PositionTrait;
     use PreviewTrait;
     use StandardTrait;
@@ -46,6 +49,13 @@ class ItemApiDto extends AbstractDto implements ItemApiDtoInterface
      * @Dto(class="Evrinoma\NomenclatureBundle\Dto\NomenclatureApiDto", generator="genRequestNomenclatureApiDto")
      */
     protected ?NomenclatureApiDtoInterface $nomenclatureApiDto = null;
+
+    /**
+     * @Dtos(class="Evrinoma\ContactBundle\Dto\NomenclatureApiDto", generator="genRequestNomenclaturesApiDto", add="addNomenclaturesApiDto")
+     *
+     * @var NomenclatureApiDto []
+     */
+    protected array $nomenclaturesApiDto = [];
 
     public function toDto(Request $request): DtoInterface
     {

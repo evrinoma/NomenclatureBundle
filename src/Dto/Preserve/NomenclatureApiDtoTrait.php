@@ -18,12 +18,16 @@ use Evrinoma\DtoCommon\ValueObject\Preserve\DescriptionTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\IdTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\PositionTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\TitleTrait;
+use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Preserve\ItemApiDtoTrait;
+use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Preserve\ItemsApiDtoTrait;
 
 trait NomenclatureApiDtoTrait
 {
     use ActiveTrait;
     use DescriptionTrait;
     use IdTrait;
+    use ItemApiDtoTrait;
+    use ItemsApiDtoTrait;
     use PositionTrait;
     use TitleTrait;
 }

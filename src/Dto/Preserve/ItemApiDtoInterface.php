@@ -21,9 +21,10 @@ use Evrinoma\DtoCommon\ValueObject\Mutable\PositionInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\PreviewInterface;
 use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Mutable\AttributesInterface;
 use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Mutable\NomenclatureApiDtoInterface;
+use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Mutable\NomenclaturesApiDtoInterface;
 use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Mutable\StandardInterface;
 use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Mutable\VendorInterface;
 
-interface ItemApiDtoInterface extends IdInterface, ActiveInterface, PositionInterface, NomenclatureApiDtoInterface, AttachmentInterface, ImageInterface, PreviewInterface, AttributesInterface, VendorInterface, StandardInterface
+interface ItemApiDtoInterface extends IdInterface, ActiveInterface, PositionInterface, NomenclatureApiDtoInterface, NomenclaturesApiDtoInterface, AttachmentInterface, ImageInterface, PreviewInterface, AttributesInterface, VendorInterface, StandardInterface
 {
 }

@@ -21,6 +21,7 @@ use Evrinoma\DtoCommon\ValueObject\Preserve\PositionTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\PreviewTrait;
 use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Preserve\AttributesTrait;
 use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Preserve\NomenclatureApiDtoTrait;
+use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Preserve\NomenclaturesApiDtoTrait;
 use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Preserve\StandardTrait;
 use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Preserve\VendorTrait;
 
@@ -32,6 +33,7 @@ trait ItemApiDtoTrait
     use IdTrait;
     use ImageTrait;
     use NomenclatureApiDtoTrait;
+    use NomenclaturesApiDtoTrait;
     use PositionTrait;
     use PreviewTrait;
     use StandardTrait;

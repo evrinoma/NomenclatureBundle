@@ -15,6 +15,9 @@ namespace Evrinoma\NomenclatureBundle\Repository;
 
 interface AliasInterface
 {
-    public const NOMENCLATURE = 'nomenclature';
-    public const FILE = 'file';
+    public const NOMENCLATURE = 'contact';
+    public const NOMENCLATURES = AliasInterface::NOMENCLATURE.'s';
+
+    public const ITEM = 'item';
+    public const ITEMS = AliasInterface::ITEM.'s';
 }

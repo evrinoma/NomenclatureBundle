@@ -19,8 +19,11 @@ use Evrinoma\DtoCommon\ValueObject\Immutable\DescriptionInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\IdInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\PositionInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\TitleInterface;
+use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Immutable\ItemApiDtoInterface;
+use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Immutable\ItemsApiDtoInterface;
 
-interface NomenclatureApiDtoInterface extends DtoInterface, IdInterface, TitleInterface, PositionInterface, ActiveInterface, DescriptionInterface
+interface NomenclatureApiDtoInterface extends DtoInterface, IdInterface, TitleInterface, PositionInterface, ActiveInterface, DescriptionInterface, ItemApiDtoInterface, ItemsApiDtoInterface
 {
     public const NOMENCLATURE = 'nomenclature';
+    public const NOMENCLATURES = NomenclatureApiDtoInterface::NOMENCLATURE.'s';
 }

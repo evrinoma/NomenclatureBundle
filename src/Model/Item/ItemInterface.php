@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Evrinoma\NomenclatureBundle\Model\Item;
 
+use Doctrine\Common\Collections\Collection;
 use Evrinoma\NomenclatureBundle\Model\Nomenclature\NomenclatureInterface;
 use Evrinoma\UtilsBundle\Entity\ActiveInterface;
 use Evrinoma\UtilsBundle\Entity\AttachmentInterface;
@@ -24,13 +25,11 @@ use Evrinoma\UtilsBundle\Entity\PreviewInterface;
 
 interface ItemInterface extends ActiveInterface, IdInterface, CreateUpdateAtInterface, PreviewInterface, ImageInterface, AttachmentInterface, PositionInterface
 {
-    public function resetNomenclature(): ItemInterface;
+    public function getNomenclatures(): Collection;
 
-    public function hasNomenclature(): bool;
+    public function addNomenclature(NomenclatureInterface $nomenclature): NomenclatureInterface;
 
-    public function getNomenclature(): NomenclatureInterface;
-
-    public function setNomenclature(NomenclatureInterface $nomenclature): ItemInterface;
+    public function removeNomenclature(NomenclatureInterface $nomenclature): NomenclatureInterface;
 
     public function getVendor(): ?string;
 

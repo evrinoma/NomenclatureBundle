@@ -25,14 +25,11 @@ use Evrinoma\UtilsBundle\Entity\TitleInterface;
 interface NomenclatureInterface extends ActiveInterface, CreateUpdateAtInterface, IdInterface, TitleInterface, PositionInterface, DescriptionInterface
 {
     /**
-     * @param Collection|ItemInterface[] $item
-     *
-     *  @return NomenclatureInterface
-     */
-    public function setItem($item): NomenclatureInterface;
-
-    /**
      * @return Collection|ItemInterface[]
      */
-    public function getItem(): Collection;
+    public function getItems(): Collection;
+
+    public function addItem(ItemInterface $item): NomenclatureInterface;
+
+    public function removeItem(ItemInterface $item): NomenclatureInterface;
 }

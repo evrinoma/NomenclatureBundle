@@ -18,7 +18,9 @@ use Evrinoma\DtoCommon\ValueObject\Mutable\DescriptionInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\IdInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\PositionInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\TitleInterface;
+use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Mutable\ItemInterface;
+use Evrinoma\NomenclatureBundle\DtoCommon\ValueObject\Mutable\ItemsInterface;
 
-interface NomenclatureApiDtoInterface extends IdInterface, TitleInterface, PositionInterface, ActiveInterface, DescriptionInterface
+interface NomenclatureApiDtoInterface extends IdInterface, TitleInterface, PositionInterface, ActiveInterface, DescriptionInterface, ItemInterface, ItemsInterface
 {
 }

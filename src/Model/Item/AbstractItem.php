@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Evrinoma\NomenclatureBundle\Model\Item;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Evrinoma\NomenclatureBundle\Model\Nomenclature\NomenclatureInterface;
 use Evrinoma\UtilsBundle\Entity\ActiveTrait;
@@ -74,10 +75,20 @@ abstract class AbstractItem implements ItemInterface
     protected $attachment = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Evrinoma\NomenclatureBundle\Model\Nomenclature\NomenclatureInterface")
-     * @ORM\JoinColumn(name="nomenclature_id", referencedColumnName="id")
+     * @var ArrayCollection|NomenclatureInterface[]
+     *
+     * @ORM\ManyToMany(targetEntity="Evrinoma\NomenclatureBundle\Model\Nomenclature\NomenclatureInterface")
+     * @ORM\JoinTable(
+     *     joinColumns={@ORM\JoinColumn(name="item_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="nomenclature_id", referencedColumnName="id")}
+     * )
      */
-    protected ?NomenclatureInterface $nomenclature = null;
+    protected $nomenclatures;
+
+    public function __construct()
+    {
+        $this->nomenclatures = new ArrayCollection();
+    }
 
     public function resetAttachment(): ItemInterface
     {
@@ -115,31 +126,25 @@ abstract class AbstractItem implements ItemInterface
         return null !== $this->image;
     }
 
-    public function getNomenclature(): NomenclatureInterface
+    public function getNomenclatures(): Collection
     {
-        return $this->nomenclature;
+        return $this->nomenclatures;
     }
 
-    public function resetNomenclature(): ItemInterface
+    public function addNomenclature(NomenclatureInterface $nomenclature): NomenclatureInterface
     {
-        $this->nomenclature = null;
+        if (!$this->nomenclatures->contains($nomenclature)) {
+            $this->nomenclatures[] = $nomenclature;
+        }
 
         return $this;
     }
 
-    public function setNomenclature(NomenclatureInterface $nomenclature): ItemInterface
+    public function removeNomenclature(NomenclatureInterface $nomenclature): NomenclatureInterface
     {
-        $this->nomenclature = $nomenclature;
+        $this->nomenclatures->removeElement($nomenclature);
 
         return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasNomenclature(): bool
-    {
-        return null !== $this->nomenclature;
     }
 
     /**

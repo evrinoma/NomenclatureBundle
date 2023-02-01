@@ -16,6 +16,7 @@ namespace Evrinoma\NomenclatureBundle\Mediator\Item;
 use Evrinoma\DtoBundle\Dto\DtoInterface;
 use Evrinoma\NomenclatureBundle\Dto\ItemApiDtoInterface;
 use Evrinoma\NomenclatureBundle\Exception\Item\ItemCannotBeCreatedException;
+use Evrinoma\NomenclatureBundle\Exception\Item\ItemCannotBeRemovedException;
 use Evrinoma\NomenclatureBundle\Exception\Item\ItemCannotBeSavedException;
 use Evrinoma\NomenclatureBundle\Manager\Nomenclature\QueryManagerInterface as NomenclatureQueryManagerInterface;
 use Evrinoma\NomenclatureBundle\Model\Item\ItemInterface;
@@ -36,10 +37,18 @@ class CommandMediator extends AbstractCommandMediator implements CommandMediator
     public function onUpdate(DtoInterface $dto, $entity): ItemInterface
     {
         /* @var $dto ItemApiDtoInterface */
-        try {
-            $entity->setNomenclature($this->nomenclatureQueryManager->proxy($dto->getNomenclatureApiDto()));
-        } catch (\Exception $e) {
-            throw new ItemCannotBeSavedException($e->getMessage());
+        if ($dto->hasNomenclaturesApiDto()) {
+            try {
+                foreach ($entity->getNomenclatures() as $nomenclature) {
+                    $entity->removeNomenclature($nomenclature);
+                }
+
+                foreach ($dto->getNomenclaturesApiDto() as $nomenclatureApiDto) {
+                    $entity->addNomenclature($this->nomenclatureQueryManager->proxy($nomenclatureApiDto));
+                }
+            } catch (\Exception $e) {
+                throw new ItemCannotBeSavedException($e->getMessage());
+            }
         }
 
         $entity
@@ -76,6 +85,16 @@ class CommandMediator extends AbstractCommandMediator implements CommandMediator
 
     public function onDelete(DtoInterface $dto, $entity): void
     {
+        /* @var $dto ItemApiDtoInterface */
+        if ($dto->hasNomenclaturesApiDto()) {
+            try {
+                foreach ($entity->getNomenclatures() as $nomenclature) {
+                    $entity->removeNomenclature($nomenclature);
+                }
+            } catch (\Exception $e) {
+                throw new ItemCannotBeRemovedException($e->getMessage());
+            }
+        }
         $entity
             ->setActiveToDelete();
     }
@@ -83,10 +102,18 @@ class CommandMediator extends AbstractCommandMediator implements CommandMediator
     public function onCreate(DtoInterface $dto, $entity): ItemInterface
     {
         /* @var $dto ItemApiDtoInterface */
-        try {
-            $entity->setNomenclature($this->nomenclatureQueryManager->proxy($dto->getNomenclatureApiDto()));
-        } catch (\Exception $e) {
-            throw new ItemCannotBeCreatedException($e->getMessage());
+        if ($dto->hasNomenclaturesApiDto()) {
+            try {
+                foreach ($entity->getNomenclatures() as $nomenclature) {
+                    $entity->removeNomenclature($nomenclature);
+                }
+
+                foreach ($dto->getNomenclaturesApiDto() as $nomenclatureApiDto) {
+                    $entity->addNomenclature($this->nomenclatureQueryManager->proxy($nomenclatureApiDto));
+                }
+            } catch (\Exception $e) {
+                throw new ItemCannotBeCreatedException($e->getMessage());
+            }
         }
 
         $entity

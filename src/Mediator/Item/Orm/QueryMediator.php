@@ -25,7 +25,7 @@ class QueryMediator extends AbstractQueryMediator implements QueryMediatorInterf
 {
     use QueryMediatorTrait;
 
-    protected static string $alias = AliasInterface::FILE;
+    protected static string $alias = AliasInterface::ITEM;
 
     /**
      * @param DtoInterface          $dto
@@ -62,14 +62,14 @@ class QueryMediator extends AbstractQueryMediator implements QueryMediatorInterf
                 ->setParameter('standard', '%'.$dto->getStandard().'%');
         }
 
-        $aliasNomenclature = AliasInterface::NOMENCLATURE;
+        $aliasNomenclatures = AliasInterface::NOMENCLATURES;
         $builder
-            ->leftJoin($alias.'.nomenclature', $aliasNomenclature)
-            ->addSelect($aliasNomenclature);
+            ->leftJoin($alias.'.nomenclatures', $aliasNomenclatures)
+            ->addSelect($aliasNomenclatures);
 
         if ($dto->hasNomenclatureApiDto()) {
             if ($dto->getNomenclatureApiDto()->hasId()) {
-                $builder->andWhere($aliasNomenclature.'.id = :idNomenclature')
+                $builder->andWhere($aliasNomenclatures.'.id = :idNomenclature')
                     ->setParameter('idNomenclature', $dto->getNomenclatureApiDto()->getId());
             }
         }
