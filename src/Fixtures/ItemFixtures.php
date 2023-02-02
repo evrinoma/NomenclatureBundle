@@ -147,7 +147,7 @@ class ItemFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
             if (\array_key_exists(ItemApiDtoInterface::NOMENCLATURES, $record)) {
                 foreach ($record[ItemApiDtoInterface::NOMENCLATURES] as $value) {
                     $entity
-                        ->addNomenclature($this->getReference($shortNomenclature . $value));
+                        ->addNomenclature($this->getReference($shortNomenclature.$value));
                 }
             }
 

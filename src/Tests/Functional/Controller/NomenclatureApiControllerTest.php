@@ -34,7 +34,7 @@ final class NomenclatureApiControllerTest extends AbstractFunctionalTest
     {
         return [
             FixtureInterface::ITEM_FIXTURES,
-            FixtureInterface::NOMENCLATURE_FIXTURES
+            FixtureInterface::NOMENCLATURE_FIXTURES,
         ];
     }
 }
