@@ -42,9 +42,14 @@ class ItemChoiceType extends AbstractType
                 if ($options->offsetExists('data')) {
                     $criteria = $this->queryManager->criteria(new static::$dtoClass());
                     switch ($options->offsetGet('data')) {
-                        case ItemApiDtoInterface::BRIEF:
+                        case ItemApiDtoInterface::VENDOR:
                             foreach ($criteria as $entity) {
-                                $value[] = $entity->getBrief();
+                                $value[] = $entity->getVendor();
+                            }
+                            break;
+                        case ItemApiDtoInterface::STANDARD:
+                            foreach ($criteria as $entity) {
+                                $value[] = $entity->getStandard();
                             }
                             break;
                         default:
