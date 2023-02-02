@@ -78,7 +78,7 @@ class NomenclatureFixtures extends AbstractFixture implements FixtureGroupInterf
      */
     protected function create(ObjectManager $manager): self
     {
-        $short = self::getReferenceName();
+        $short = static::getReferenceName();
         $i = 0;
 
         foreach ($this->getData() as $record) {
@@ -104,7 +104,7 @@ class NomenclatureFixtures extends AbstractFixture implements FixtureGroupInterf
     public static function getGroups(): array
     {
         return [
-            FixtureInterface::NOMENCLATURE_FIXTURES, FixtureInterface::ITEM_FIXTURES,
+            FixtureInterface::NOMENCLATURE_FIXTURES,
         ];
     }
 

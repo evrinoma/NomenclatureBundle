@@ -32,6 +32,9 @@ final class ItemApiControllerTest extends AbstractFunctionalTest
 
     public static function getFixtures(): array
     {
-        return [FixtureInterface::ITEM_FIXTURES];
+        return [
+            FixtureInterface::ITEM_FIXTURES,
+            FixtureInterface::NOMENCLATURE_FIXTURES
+        ];
     }
 }

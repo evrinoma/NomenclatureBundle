@@ -114,7 +114,7 @@ class ItemFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
      */
     protected function create(ObjectManager $manager): self
     {
-        $short = self::getReferenceName();
+        $short = static::getReferenceName();
         $shortNomenclature = NomenclatureFixtures::getReferenceName();
         $i = 0;
 
@@ -144,9 +144,11 @@ class ItemFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
                     ->setAttachment($record[ItemApiDtoInterface::ATTACHMENT]);
             }
 
-            foreach ($record[ItemApiDtoInterface::NOMENCLATURES] as $value) {
-                $entity
-                    ->addNomenclature($this->getReference($shortNomenclature.$value));
+            if (\array_key_exists(ItemApiDtoInterface::NOMENCLATURES, $record)) {
+                foreach ($record[ItemApiDtoInterface::NOMENCLATURES] as $value) {
+                    $entity
+                        ->addNomenclature($this->getReference($shortNomenclature . $value));
+                }
             }
 
             $this->expandEntity($entity, $record);
@@ -162,7 +164,7 @@ class ItemFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
     public static function getGroups(): array
     {
         return [
-            FixtureInterface::NOMENCLATURE_FIXTURES, FixtureInterface::ITEM_FIXTURES,
+            FixtureInterface::ITEM_FIXTURES,
         ];
     }
 
