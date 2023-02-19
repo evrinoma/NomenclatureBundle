@@ -164,7 +164,7 @@ class ItemFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
     public static function getGroups(): array
     {
         return [
-            FixtureInterface::ITEM_FIXTURES,
+            FixtureInterface::NOMENCLATURE_ITEM_FIXTURES,
         ];
     }
 

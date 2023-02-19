@@ -33,7 +33,7 @@ final class NomenclatureApiControllerTest extends AbstractFunctionalTest
     public static function getFixtures(): array
     {
         return [
-            FixtureInterface::ITEM_FIXTURES,
+            FixtureInterface::NOMENCLATURE_ITEM_FIXTURES,
             FixtureInterface::NOMENCLATURE_FIXTURES,
         ];
     }

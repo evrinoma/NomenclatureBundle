@@ -16,5 +16,5 @@ namespace Evrinoma\NomenclatureBundle\Fixtures;
 interface FixtureInterface
 {
     public const NOMENCLATURE_FIXTURES = 'NOMENCLATURE_FIXTURES';
-    public const ITEM_FIXTURES = 'ITEM_FIXTURES';
+    public const NOMENCLATURE_ITEM_FIXTURES = 'NOMENCLATURE_ITEM_FIXTURES';
 }
