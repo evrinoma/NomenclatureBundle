@@ -68,13 +68,13 @@ trait NomenclatureRepositoryTrait
 
         $this->mediator->createQuery($dto, $builder);
 
-        $galleries = $this->mediator->getResult($dto, $builder);
+        $nomenclatures = $this->mediator->getResult($dto, $builder);
 
-        if (0 === \count($galleries)) {
+        if (0 === \count($nomenclatures)) {
             throw new NomenclatureNotFoundException('Cannot find nomenclature by findByCriteria');
         }
 
-        return $galleries;
+        return $nomenclatures;
     }
 
     /**
