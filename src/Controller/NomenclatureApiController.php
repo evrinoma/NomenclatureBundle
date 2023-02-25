@@ -114,6 +114,7 @@ final class NomenclatureApiController extends AbstractWrappedApiController imple
         try {
             $this->facade->post($nomenclatureApiDto, $group, $json);
         } catch (\Exception $e) {
+            $json = [];
             $error = $this->setRestStatus($e);
         }
 
@@ -181,6 +182,7 @@ final class NomenclatureApiController extends AbstractWrappedApiController imple
         try {
             $this->facade->put($nomenclatureApiDto, $group, $json);
         } catch (\Exception $e) {
+            $json = [];
             $error = $this->setRestStatus($e);
         }
 
@@ -230,6 +232,7 @@ final class NomenclatureApiController extends AbstractWrappedApiController imple
         try {
             $this->facade->delete($nomenclatureApiDto, '', $json);
         } catch (\Exception $e) {
+            $json = [];
             $error = $this->setRestStatus($e);
         }
 
@@ -321,6 +324,7 @@ final class NomenclatureApiController extends AbstractWrappedApiController imple
         try {
             $this->facade->criteria($nomenclatureApiDto, $group, $json);
         } catch (\Exception $e) {
+            $json = [];
             $error = $this->setRestStatus($e);
         }
 
@@ -369,6 +373,7 @@ final class NomenclatureApiController extends AbstractWrappedApiController imple
         try {
             $this->facade->get($nomenclatureApiDto, $group, $json);
         } catch (\Exception $e) {
+            $json = [];
             $error = $this->setRestStatus($e);
         }
 
