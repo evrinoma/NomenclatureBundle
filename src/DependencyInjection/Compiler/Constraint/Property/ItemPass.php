@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 
 class ItemPass extends AbstractConstraint implements CompilerPassInterface
 {
-    public const ITEM_CONSTRAINT = 'evrinoma.nomenclature.constraint.item.property';
+    public const ITEM_CONSTRAINT = 'evrinoma.nomenclature.constraint.property.item';
 
     protected static string $alias = self::ITEM_CONSTRAINT;
     protected static string $class = ItemValidator::class;

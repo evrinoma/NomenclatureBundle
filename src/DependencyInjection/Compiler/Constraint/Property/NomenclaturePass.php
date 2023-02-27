@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 
 class NomenclaturePass extends AbstractConstraint implements CompilerPassInterface
 {
-    public const NOMENCLATURE_CONSTRAINT = 'evrinoma.nomenclature.constraint.nomenclature.property';
+    public const NOMENCLATURE_CONSTRAINT = 'evrinoma.nomenclature.constraint.property.nomenclature';
 
     protected static string $alias = self::NOMENCLATURE_CONSTRAINT;
     protected static string $class = NomenclatureValidator::class;
