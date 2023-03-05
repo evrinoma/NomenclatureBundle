@@ -3,7 +3,7 @@ services:
     class: Evrinoma\NomenclatureBundle\Constraint\Property\Item\Vendor
   evrinoma.nomenclature.constraint.property.item.active:
     class: Evrinoma\NomenclatureBundle\Constraint\Property\Item\Active
-  evrinoma.nomenclature.constraint.property.item.Standartd:
+  evrinoma.nomenclature.constraint.property.item.standartd:
     class: Evrinoma\NomenclatureBundle\Constraint\Property\Item\Standartd
   evrinoma.nomenclature.constraint.property.item.postition:
     class: Evrinoma\NomenclatureBundle\Constraint\Property\Item\Position
